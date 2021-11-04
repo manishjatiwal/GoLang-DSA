@@ -15,18 +15,17 @@ func validAnagram(string1 string, string2 string) bool {
 	if length1 != length2 {
 		return false
 	}
-	frequencyCounter1 := make(map[byte]int)
-	frequencyCounter2 := make(map[byte]int)
+	frequencyCounter := make(map[byte]int)
 	for i := 0; i < length1; i++ {
 		char := string1[i]
-		frequencyCounter1[char] = frequencyCounter1[char] + 1
+		frequencyCounter[char] = frequencyCounter[char] + 1
 	}
 	for i := 0; i < length2; i++ {
 		char := string2[i]
-		frequencyCounter2[char] = frequencyCounter2[char] + 1
+		frequencyCounter[char] = frequencyCounter[char] - 1
 	}
-	for key, value := range frequencyCounter1 {
-		if frequencyCounter2[key] != value {
+	for _, value := range frequencyCounter {
+		if value != 0 {
 			return false
 		}
 	}
